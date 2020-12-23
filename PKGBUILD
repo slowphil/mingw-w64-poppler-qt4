@@ -3,7 +3,7 @@
 _realname=poppler
 pkgbase=mingw-w64-${_realname}-qt4
 pkgname="${MINGW_PACKAGE_PREFIX}-${_realname}-qt4"
-pkgver=0.36.0
+pkgver=0.45.0
 pkgrel=1
 pkgdesc="PDF rendering library based on xpdf 3.0 (mingw-w64)"
 arch=('any')
@@ -30,11 +30,11 @@ optdepends=("${MINGW_PACKAGE_PREFIX}-glib2: libpoppler-glib"
 options=('strip' 'staticlibs')
 source=("https://poppler.freedesktop.org/${_realname}-${pkgver}.tar.xz"
         "give-cc-to-gir-scanner.mingw.patch")
-sha256sums=('93cc067b23c4ef7421380d3e8bd7c940b2027668446750787d7c1cb42720248e'
+sha256sums=('96dd1a6024bcdaa4530a3b49687db3d5c24ddfd072ccb37c6de0e42599728798'
             'f90e1470a0a4a636f8868917cd94b5fbdff2b7e45e941b23c56b29ad10df4d8e')
 
 prepare() {
-  cd "$}srcdir}/${_realname}-$}pkgver}"
+  cd "${srcdir}/${_realname}-$}pkgver}"
   patch -p1 -i "$srcdir/give-cc-to-gir-scanner.mingw.patch"
   #sed -i -e '/AC_PATH_XTRA/d' configure.ac
   #sed -i "s:AM_CONFIG_HEADER:AC_CONFIG_HEADERS:" configure.ac
@@ -51,7 +51,6 @@ build() {
     --host=${MINGW_CHOST} \
     --enable-xpdf-headers \
     --enable-zlib \
-    --enable-libcurl \
     --disable-gtk-test \
     --enable-utils \
     --disable-gtk-doc-html \
